@@ -2,6 +2,8 @@ import { Request, Response } from 'express'
 
 import { container } from 'tsyringe'
 
+import { classToClass } from 'class-transformer'
+
 import UpdateUserAvatarService from '@modules/users/services/UpdateUserAvatarService'
 
 export default class UserAvatarController {
@@ -13,15 +15,6 @@ export default class UserAvatarController {
       avatarFilename: request.file.filename,
     })
 
-    const userWithoutPassword = {
-      id: user.id,
-      name: user.name,
-      email: user.email,
-      avatar: user.avatar,
-      created_at: user.created_at,
-      updated_at: user.updated_at,
-    }
-
-    return response.status(200).json(userWithoutPassword)
+    return response.status(200).json(classToClass(user))
   }
 }
