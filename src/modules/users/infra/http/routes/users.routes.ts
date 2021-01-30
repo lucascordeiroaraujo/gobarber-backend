@@ -14,7 +14,7 @@ import UsersController from '../controllers/UsersController'
 
 const usersRouter = Router()
 
-const upload = multer(uploadConfig)
+const upload = multer(uploadConfig.multer)
 
 const usersController = new UsersController()
 
