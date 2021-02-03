@@ -14,6 +14,8 @@ import uploadConfig from '@config/upload'
 
 import AppError from '@shared/errors/AppError'
 
+import rateLimiter from './middleware/rateLimiter'
+
 import routes from './routes'
 
 import '@shared/infra/typeorm'
@@ -25,6 +27,8 @@ const app = express()
 app.use(express.json())
 
 app.use('/files', express.static(uploadConfig.uploadFolder))
+
+app.use(rateLimiter)
 
 app.use(cors())
 
